@@ -31,19 +31,18 @@ def index():
     if request.method == 'POST':
         if form.is_submitted():
             result = check_website(form.website.data)
-        return render_template('webcheck.html', form=form, result=result)
+        return render_template('webcheck.html', form=form, result=result, lan=lan, ext=ext)
 
-    #if request.method == 'POST':
-        #if form.validate_on_submit():
-           # return check_website(form.website.data)
-       # return redirect(url_for(webcheck))
-
+"""
 @app.route('/webcheck', methods=['GET', 'POST'])
 def webcheck():
+    lan = obj.current_lan_ip()
+    ext = obj.current_wan_ip()
     if request.method == 'GET':
-        return render_template("webcheck.html")
+        return render_template("webcheck.html", lan=lan, ext=ext)
     if request.method == 'POST':
         pass
+"""
 
 if __name__ == '__main__':
     app.run(debug=True)
