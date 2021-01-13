@@ -10,9 +10,20 @@ def filtered_site(str):
 def user_result(f_site):
     try:
         with requests.get('http://{}'.format(f_site), timeout=3) as res:
-            lists = res.headers
-            for k,v in lists.items():
-                print(k,v)
+            #lists = res.headers
+            lists = res.headers.get('server')
+            mod = res.headers.get('Last-Modified')
+            content = res.headers.get('Content-Type')
+
+            if lists is None:
+                lists = 'N/A'
+            if mod is None:
+                mod = 'N/A'
+            if content is None:
+                content = 'N/A'
+
+            f_list = lists, mod, content, f_site
+            return "\n{}".format('\n'.join(f_list))
     except TypeError:
         print("N/A")
         
