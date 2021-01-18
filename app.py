@@ -33,16 +33,5 @@ def index():
             result = check_website(form.website.data)
         return render_template('webcheck.html', form=form, result=result, lan=lan, ext=ext)
 
-"""
-@app.route('/webcheck', methods=['GET', 'POST'])
-def webcheck():
-    lan = obj.current_lan_ip()
-    ext = obj.current_wan_ip()
-    if request.method == 'GET':
-        return render_template("webcheck.html", lan=lan, ext=ext)
-    if request.method == 'POST':
-        pass
-"""
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
